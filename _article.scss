@@ -1,0 +1,18 @@
+//! Extend and Usage-1
+
+article {
+  display: flex;
+  .article1 {
+    width: 50%;
+    height: 200px;
+    background-color: gray;
+    border: 2px solid black;
+    border-radius: 10%;
+    padding: 10px;
+    margin: 2px;
+  }
+  //   .article2 {
+  //     @extend .article1;
+  //     background-color: purple;
+  //   }
+}

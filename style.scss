@@ -1,0 +1,149 @@
+@import "reset";
+@import "variables";
+@import "mixin";
+@import "article";
+
+.container {
+  padding: 0 1rem;
+}
+
+//! Variable Usage
+
+body {
+  background-color: $bgColor;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  color: $fontColor;
+}
+
+//! Nesting Usage
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: $navBgColor;
+
+  .brand {
+    img {
+      width: 80px;
+      border: $navBgColor;
+      border-radius: 30%;
+      padding: 10px;
+      margin: 10px;
+    }
+  }
+  .navbar {
+    margin: 10px;
+    ul {
+      list-style-type: none;
+      display: flex;
+      li {
+        a {
+          text-decoration: none;
+          padding: 5px;
+          color: black;
+          font-size: $myLinkSize;
+        }
+        input {
+          width: 60px;
+        }
+      }
+    }
+  }
+}
+
+//? SLIDER  Nesting
+
+.slider {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: $sliderBgColor;
+  .left {
+    margin-top: 20px;
+    button {
+      padding: 10px;
+      border-radius: 10px;
+      margin: 10px;
+      background-color: $navBgColor;
+      font-size: $myLinkSize;
+      border: 2px solid gray;
+
+      /***  IMPORTANT  ***/
+      &:hover {
+        background-color: green;
+        border: 2px solid pink;
+      }
+    }
+  }
+  img {
+    width: 30%;
+  }
+}
+
+//! Mixin Usage
+
+.content {
+  .cards {
+    display: flex;
+    .card1 {
+      @include myBox(brown, white);
+    }
+    .card2 {
+      @include myBox(rgb(199, 255, 192), blue);
+    }
+    .card3 {
+      @include myBox(blue, gray);
+    }
+    .card4 {
+      @include myBox(green, black);
+    }
+  }
+}
+
+//! Extend Usage-2
+
+article {
+  .article2 {
+    @extend .article1;
+    background-color: purple;
+  }
+}
+
+//! FOR Loop
+
+.socialBoxes {
+  display: flex;
+  @for $i from 1 through 5 {
+    .social#{$i} {
+      width: 20%;
+      height: 100px;
+      background-color: lighten(black, ($i * 10));
+      // background-color: darken(gray, ($i * 10));
+    }
+  }
+}
+
+//! Array
+
+$textColor: #990000, #55004e, #0fa8a1, #121456, #64c217;
+@for $i from 1 through length($textColor) {
+  .social#{$i} {
+    color: nth($textColor, $i);
+    font-size: $i * 1rem;
+    font-weight: 600;
+  }
+}
+
+//! IF-ELSE
+
+$dark: 3;
+
+.footer {
+  @if $dark == 1 {
+    background-color: white;
+  } @else if $dark == 2 {
+    background-color: gray;
+  } @else {
+    background-color: green;
+  }
+}
